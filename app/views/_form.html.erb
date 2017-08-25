@@ -1,0 +1,57 @@
+<%= simple_form_for @page,  html: { role: 'form', multipart: true } do |f| %>
+	<%= f.error_notification %>
+
+		<%= f.input :title,
+								label: t('activerecord.attributes.pages.title'),
+								hint: t('pages.hint.title'),
+								input_html: { size: 45 } %>
+
+		<%= f.input :for_blog,
+								label: t('activerecord.attributes.pages.for_the_blog')
+								 %>
+
+		<%= f.input :tag_list,
+								label: t('tags.tag_list'),
+								hint: t('tags.hint.name'),
+								:wrapper_html => { :id => 'page-tag-list' },
+								input_html: { size: 45 } %>
+
+		<%= f.input :short_title,
+								label: t('activerecord.attributes.pages.short_title'),
+								hint: t('pages.hint.short_title'),
+								input_html: { size: 45 },
+								:wrapper_html => { :id => 'page-short-title' } %>
+
+		<%= f.input :parent_page_title,
+								as: :string,
+								:wrapper_html => { :id => 'parent-page-title' },
+								label: t('activerecord.attributes.pages.parent_title'),
+								:input_html => {
+																size: 45,
+																:autocomplete => 'off',
+																:data => { 	provide: 'typeahead',
+																	 					source: Page.not_for_blog.by_title.map(&:title).to_json }
+																	} %>
+
+	  <%= f.input :description, label: t('activerecord.attributes.pages.description'), :input_html => { cols: 45, rows: 3 } %>
+		<%= f.input :body, label: t('activerecord.attributes.pages.body'), :input_html => { :rows => 35, :class => 'ckeditor' } %>
+
+		<% if controller.action_name == 'edit' # the current_user is the page creator in create method but can be changed in update method %>
+			<%= f.input :author_name,
+									as: :string,
+									:wrapper_html => { :id => 'author-name' },
+									label: "author name",
+									:input_html => {
+																	size: 45,
+																	:autocomplete => 'off',
+																	:data => { 	source: User.administrators.alphabetically.map(&:formal_name).to_json }
+																		} %>
+		<% end %>
+
+    <%= f.input :image,
+                label: t('activerecord.attributes.illustration.image'),
+                hint: "Ideal ratio: 1.91x1 - between 1.6x1 to 2.25x1 is okay. 400px wide at the very least. 1,200px wide or more recommended." %>
+
+    <%= f.button :submit, :class => 'btn btn-primary' %>
+
+<% end %>
