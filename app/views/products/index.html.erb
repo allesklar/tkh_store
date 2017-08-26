@@ -12,7 +12,7 @@
 	<tbody>
 		<% @products.each do |product| %>
   	<tr>
-  		<td><%= image_tag product.image.small.path %></td>
+  		<td><%= image_tag product.image.thumbnail.url %></td>
 	    <td><%= link_to product.name, product %></td>
 	    <td>
 	    	<%= link_to "<span class='glyphicon glyphicon-pencil'></span> edit".html_safe, edit_product_path(product), class: 'btn btn-xs btn-default', title: t('edit') %><%= link_to "<span class='glyphicon glyphicon-trash'></span> delete".html_safe, product, method: :delete, data: { confirm: t('are_you_sure') }, class: 'btn btn-xs btn-danger', title: t('delete') %>
