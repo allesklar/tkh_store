@@ -1,6 +1,6 @@
 <% content_for :search_metas do %>
   <!-- General meta info + SEO -->
-  <name><%= product.name %></name>
+  <title><%= product.name %></title>
   <meta name="description" content="<%= product.description %>" />
   <% content_for :canonical_link, link_to('', product, rel: 'canonical') %>
 <% end %>
@@ -22,7 +22,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@<%= Setting.first.try(:twitter_handle) %>">
     <meta name="twitter:url" content="<%= product_url(product) %>">
-    <meta name="twitter:name" content="<%= product.name %>">
+    <meta name="twitter:title" content="<%= product.name %>">
     <meta name="twitter:creator" content="@<%= Setting.first.try(:twitter_handle) %>">
     <meta name="twitter:description" content="<%= product.description %>">
     <!-- Twitter summary card with large image must be at least 280x150px (Moz) -->
@@ -36,7 +36,7 @@
   <% end %>
 
   <!-- Open Graph data - Facebook -->
-  <meta property="og:name" content="<%= product.name %>" />
+  <meta property="og:title" content="<%= product.name %>" />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="<%= product_url(product) %>" />
   <!-- img should be at minimum 200x200, 600x315 is much better, at least 1200x630 is recommended -->

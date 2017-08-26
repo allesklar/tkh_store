@@ -1,0 +1,18 @@
+<%= simple_form_for @product,  html: { role: 'form', multipart: true } do |f| %>
+	<%= f.error_notification %>
+
+		<%= f.input :name,
+								hint: 'each soap should have a nice name',
+								input_html: { size: 45 } %>
+
+	  <%= f.input :description, :input_html => { cols: 45, rows: 3 } %>
+		<%= f.input :ingredients,
+								hint: 'write them all, separated by commas',
+								:input_html => { cols: 45, rows: 3 }  %>
+
+    <%= f.input :image,
+                hint: "Higher resolution is better" %>
+
+    <%= f.button :submit, :class => 'btn btn-primary' %>
+
+<% end %>

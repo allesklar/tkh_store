@@ -1,4 +1,4 @@
-<h1><%= "#{Product.count} #{t('activerecord.models.products')}" %></h1>
+<h1><%= "#{Product.count} Products" %></h1>
 
 <ul class="nav nav-tabs" id="admin-menu-tab">
 	<%= content_tag :li, link_to(t('new'), new_product_path), ({ class: 'active' } if controller.action_name.to_s == 'new' ) %>

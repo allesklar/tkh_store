@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
-  before_filter :authenticate,                          except: [ :show ]
-  before_action -> { require_permission_to 'write_products'}, except: [ :show ]
+  before_filter :authenticate,                                 except: [ :show ]
+  before_action -> { require_permission_to 'write_products'},  except: [ :show ]
 
   def index
     @products = Product.by_recent
@@ -10,7 +10,6 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    render layout: 'blog' if @product.for_blog?
   end
 
   def new
