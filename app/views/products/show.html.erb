@@ -1,4 +1,9 @@
 <%= render 'metas', product: @product %>
 
 <%= content_tag :h1, @product.name %>
+<p><%= image_tag @product.image.large.path %></p>
 <%= content_tag :p, @product.description %>
+
+<p>
+  <img src="/Users/swamiatma/Documents/Dropbox/coding/rails/soapy/public/system/images/product/1/large_coffee-soap.jpg" alt="Large coffee soap">
+</p>
