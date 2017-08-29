@@ -8,3 +8,8 @@
 
 <h3>Ingredients</h3>
 <%= content_tag :p, @product.ingredients %>
+
+<% if administrator? %>
+  <h3>For Admins Only</h3>
+  <%= link_to "<span class='glyphicon glyphicon-pencil'></span> edit".html_safe, edit_product_path(@product), class: 'btn btn-default', title: t('edit') %><%= link_to "<span class='glyphicon glyphicon-list'></span> list".html_safe, products_path, class: 'btn btn-default' %>
+<% end %>
