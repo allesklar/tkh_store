@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   before_action -> { require_permission_to 'write_products'},  except: [ :show ]
 
   def index
-    @products = Product.by_recent
+    @products = Product.by_recently_published
     switch_to_admin_layout
   end
 
@@ -46,6 +46,26 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.destroy
     redirect_to products_url, notice: t('products.destroy.notice')
+  end
+
+  def publish
+    product = Product.find(params[:id])
+    product.published_at = Time.now
+    if product.save
+      redirect_to products_path, notice: "This product has been published."
+    else
+      redirect_to :back, :flash => { error: 'There was a problem while publishing this product.' }
+    end
+  end
+
+  def unpublish
+    product = Product.find(params[:id])
+    product.published_at = nil
+    if product.save
+      redirect_to products_path, notice: "This product has been unpublished and is back to being a draft."
+    else
+      redirect_to :back, :flash => { error: 'There was a problem while unpublishing this product.' }
+    end
   end
 
   private

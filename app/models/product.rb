@@ -18,7 +18,13 @@ class Product < ActiveRecord::Base
     name ? "#{id}-#{name.to_url}" : id
   end
 
-  scope :by_recent, -> { order('created_at desc') }
   scope :alphabetically, -> { order('name') }
+  scope :by_recently_created, -> { order('created_at desc') }
+  scope :by_recently_published, -> { order('published_at desc') }
+  scope :by_recently_updated, -> { order('updated_at desc') }
+
+  def published?
+    published_at.present? ? true : false
+  end
 
 end
