@@ -9,7 +9,10 @@
 <h3 id="product-ingredientns"><%= t 'products.ingredients' %></h3>
 <%= content_tag :p, @product.ingredients %>
 
+<!-- only for soapy site -->
+<p id='link-to-products'><%= link_to 'Seifen und mehr...', root_path, class: 'btn btn-primary' %></p>
+
 <% if administrator? %>
-  <h3>For Admins Only</h3>
+  <h3 id="admin-sections">For Admins Only</h3>
   <%= link_to "<span class='glyphicon glyphicon-pencil'></span> edit".html_safe, edit_product_path(@product), class: 'btn btn-default', title: t('edit') %><%= link_to "<span class='glyphicon glyphicon-list'></span> list".html_safe, products_path, class: 'btn btn-default' %>
 <% end %>
