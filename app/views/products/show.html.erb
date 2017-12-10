@@ -3,10 +3,10 @@
 <%= content_tag :h1, @product.name %>
 <p><%= image_tag @product.image.large.url %></p>
 
-<h3>Description</h3>
+<h3 id="product-description"><%= t 'products.description' %></h3>
 <%= content_tag :p, @product.description %>
 
-<h3>Ingredients</h3>
+<h3 id="product-ingredientns"><%= t 'products.ingredients' %></h3>
 <%= content_tag :p, @product.ingredients %>
 
 <% if administrator? %>
