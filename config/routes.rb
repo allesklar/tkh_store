@@ -6,6 +6,10 @@ Rails.application.routes.draw do
         post :publish
         post :unpublish
       end
+      collection do
+        get :reorder
+        post :sort
+      end
     end
 
   end

@@ -1,0 +1,17 @@
+<%= render 'tab_admin_menu' %>
+
+<p>Please use this page to reorder the products as you want them to show in the home page.</p>
+
+<p>To change the position of an item in this list use the little handle to drag entries up or down.</p>
+
+<ul class="draggable" data-update-url="<%= sort_products_path %>">
+  <% for product in @products %>
+    <%= content_tag_for :li, product do %>
+      <%= image_tag 'admin/drag-handle.gif', class: 'handle' %> <%= product.name %>
+    <% end %>
+  <% end %>
+</ul>
+
+<p><%= link_to 'see all products', products_path, class: 'btn btn-default' %></p>
+
+<%= render 'shared/admin_sidebar' %>

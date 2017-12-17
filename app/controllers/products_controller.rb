@@ -68,6 +68,18 @@ class ProductsController < ApplicationController
     end
   end
 
+  def reorder
+    @products = Product.ordered
+    switch_to_admin_layout
+  end
+
+  def sort
+    params[:product].each_with_index do |id, index|
+      Product.update id, position: index+1
+    end
+    render nothing: true
+  end
+
   private
 
   # Never trust parameters from the scary internet, only allow the white list through.

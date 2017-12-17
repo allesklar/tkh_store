@@ -4,4 +4,5 @@
 	<%= content_tag :li, link_to(t('new'), new_product_path), ({ class: 'active' } if controller.action_name.to_s == 'new' ) %>
 	<%= content_tag :li, link_to(t('list'), products_path), ({ class: 'active' } if controller.action_name.to_s == 'index' ) %>
 	<%= content_tag :li, link_to(t('edit'), '#'), ({ class: 'active' }) if controller.action_name.to_s == 'edit' %>
+  <%= content_tag :li, link_to('reorder', reorder_products_path), ( { class: 'active' } if controller.action_name.to_s == 'reorder' ) %>
 </ul>

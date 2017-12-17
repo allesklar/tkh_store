@@ -19,6 +19,7 @@ module TkhStore
         puts 'creating or updating store migrations'
         migration_template "create_products.rb", "db/migrate/create_products.rb"
         migration_template "add_published_to_products.rb", "db/migrate/add_published_to_products.rb"
+        migration_template "add_position_to_products.rb", "db/migrate/add_position_to_products.rb"
       end
 
     end
