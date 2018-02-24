@@ -24,6 +24,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new product_params
+
     if @product.save
       redirect_to @product, notice: "The product was created in the database."
     else
@@ -51,6 +52,9 @@ class ProductsController < ApplicationController
   def publish
     product = Product.find(params[:id])
     product.published_at = Time.now
+    # newly published should go on top of homepage by default
+    first_position = Product.ordered.first.position
+    product.position = first_position - 1
     if product.save
       redirect_to products_path, notice: "This product has been published."
     else
