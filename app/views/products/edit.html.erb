@@ -1,4 +1,54 @@
+<% content_for :search_metas do %>
+  <!-- General meta info + SEO -->
+  <title><%= @product.name %></title>
+  <meta name="description" content="<%= @product.description %>" />
+<% end %>
+<!-- original system -->
+<% content_for :meta_title, @product.name %>
+
 <%= render 'tab_admin_menu' %>
 
 <%= render 'form' %>
+
+<div id="existing_product_images">
+  <h2>Additional Images</h2>
+  <% if @product.illustrations.any? %>
+    <% @product.illustrations.each do |pic| %>
+      <% unless pic.image.blank? %>
+        <div id="illustration-<%= pic.id %>">
+          <%= image_tag pic.image.thumbnail, class: 'product-image' %>
+          &nbsp;
+          <%= pic.name %>
+          &nbsp;
+          <%= form_tag remove_image_from_product_path, class: "inline-form", remote: true do %>
+            <%= hidden_field_tag 'id', @product.id %>
+            <%= hidden_field_tag 'illustration_id', pic.id %>
+            <%= submit_tag 'remove' %>
+          <% end %>
+          <hr />
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p>There are no images connected to this item at this time.</p>
+  <% end %>
+</div>
+
+<%= form_tag search_for_product_images_path, remote: true do %>
+  <h3>search by illustration name</h3>
+  <p>
+    <%= hidden_field_tag 'product_id', @product.id %>
+    <%= text_field_tag 'illustration_search', nil, id: 'search-by-image-names', size: 45 %>
+    &nbsp;
+    <%= submit_tag 'search' %>
+  </p>
+<% end %>
+
+<div id="image-search-results"></div>
+
 <%= render 'shared/admin_sidebar' %>
+
+<!-- needed to search the illustration model for available product images -->
+<% content_for :extra_admin_javascript do %>
+  <%= javascript_include_tag "store/custom" %>
+<% end %>

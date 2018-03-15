@@ -1,5 +1,8 @@
 class Product < ActiveRecord::Base
 
+  has_many :product_images, :dependent => :destroy
+  has_many :illustrations, :through => :product_images
+
   tkh_searchable
   def self.tkh_search_indexable_fields
     indexable_fields = {

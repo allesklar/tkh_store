@@ -1,0 +1,12 @@
+<div id="illustration-<%= current_illustration.id %>" style="display:none;">
+  <%= image_tag current_illustration.image.thumbnail, class: 'product-image' %>
+  &nbsp;
+  <%= current_illustration.name %>
+  &nbsp;
+  <%= form_tag remove_image_from_product_path, class: "inline-form", remote: true do %>
+    <%= hidden_field_tag 'id', @product.id %>
+    <%= hidden_field_tag 'illustration_id', current_illustration.id %>
+    <%= submit_tag 'remove' %>
+  <% end %>
+  <hr />
+</div>

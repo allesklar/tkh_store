@@ -1,0 +1,1 @@
+$('#image-search-results').hide().html("<%= escape_javascript(render partial: 'illustration_search_results', locals: { product: @product, results: @results }) %>").slideDown(300);

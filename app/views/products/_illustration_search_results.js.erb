@@ -1,0 +1,22 @@
+<h3>Candidate Illustrations</h3>
+
+<% if @results.any? %>
+  <% @results.each do |result| %>
+
+    <div id="illustration-<%= result.id %>">
+      <%= image_tag result.image.thumbnail, class: 'product-image' %>
+      &nbsp;
+      <%= result.name %>
+      &nbsp;
+      <%= form_tag add_image_to_product_path, class: "inline-form", remote: true do %>
+        <%= hidden_field_tag 'id', @product.id %>
+        <%= hidden_field_tag 'illustration_id', result.id %>
+        <%= submit_tag 'add' %>
+      <% end %>
+      <hr />
+    </div>
+
+  <% end %>
+<% else %>
+  <p>There are no illustrations corresponding to this query.</p>
+<% end %>

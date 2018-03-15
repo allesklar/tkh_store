@@ -1,0 +1,4 @@
+$('#illustration-<%= @current_illustration.id %>').slideUp(300).remove();
+
+$('#existing_product_images').append("<%= escape_javascript(render partial: 'added_image', locals: { product: @product, current_illustration: @current_illustration }) %>");
+$('#illustration-<%= @current_illustration.id %>').slideDown(300);

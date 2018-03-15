@@ -1,5 +1,9 @@
 class ProductsController < ApplicationController
 
+  # respond_to :html, :js
+
+  protect_from_forgery except: :search_for_images
+
   before_filter :authenticate,                                 except: [ :show ]
   before_action -> { require_permission_to 'write_products'},  except: [ :show ]
 
@@ -82,6 +86,27 @@ class ProductsController < ApplicationController
       Product.update id, position: index+1
     end
     render nothing: true
+  end
+
+  def search_for_images
+    @product = Product.find(params[:product_id])
+    query = params[:illustration_search]
+    @results = Illustration.with_translations.where("illustration_translations.name LIKE ?", "%#{query}%" ).by_recent.limit('8')
+    respond_to do |format|
+      format.js { render :layout => false }
+    end
+  end
+
+  def add_image_to
+    @product = Product.find(params[:id])
+    @current_illustration = Illustration.find params[:illustration_id]
+    @product.illustrations << @current_illustration
+  end
+
+  def remove_image_from
+    @product = Product.find(params[:id])
+    @current_illustration = Illustration.find params[:illustration_id]
+    @product.illustrations.delete @current_illustration
   end
 
   private

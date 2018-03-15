@@ -20,6 +20,7 @@ module TkhStore
         migration_template "create_products.rb", "db/migrate/create_products.rb"
         migration_template "add_published_to_products.rb", "db/migrate/add_published_to_products.rb"
         migration_template "add_position_to_products.rb", "db/migrate/add_position_to_products.rb"
+        migration_template "create_product_images.rb", "db/migrate/create_product_images.rb"
       end
 
     end
