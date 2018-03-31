@@ -1,6 +1,6 @@
 <% content_for :search_metas do %>
   <!-- General meta info + SEO -->
-  <title><%= product.name %></title>
+  <title><%= product.name + " | " + Setting.first.site_name || "" %></title>
   <meta name="description" content="<%= product.description %>" />
   <% content_for :canonical_link, link_to('', product, rel: 'canonical') %>
 <% end %>
