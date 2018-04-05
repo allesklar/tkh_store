@@ -15,5 +15,12 @@ Rails.application.routes.draw do
     post 'add_image_to_product',      to: 'products#add_image_to',      :defaults => { :format => 'js' }
     post 'remove_image_from_product', to: 'products#remove_image_from', :defaults => { :format => 'js' }
 
+    resources :categories do
+      collection do
+        get   :reorder
+        post  :sort
+      end
+    end
+
   end
 end

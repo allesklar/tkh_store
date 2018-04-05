@@ -1,0 +1,10 @@
+<%= simple_form_for @category,  html: { role: 'form', multipart: true } do |f| %>
+  <%= f.error_notification %>
+
+    <%= f.input :name,
+                hint: 'each category should have a short and descriptive name',
+                input_html: { size: 60 } %>
+
+    <%= f.button :submit, class: 'btn btn-primary' %>
+
+<% end %>

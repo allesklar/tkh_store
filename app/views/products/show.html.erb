@@ -1,5 +1,14 @@
 <%= render 'metas', product: @product %>
 
+
+<ul class="nav nav-tabs" id="category-menu-tabs">
+  <% Category.all.each do |category| %>
+    <% unless category.products.published.count == 0 %>
+      <%= content_tag :li, link_to(category.name, root_path(cat: category.id)), ({ class: 'active' } if category.id == @product.category_id ) %>
+    <% end %>
+  <% end %>
+</ul>
+
 <div id="product-banner-image"><%= image_tag @product.image.xxl.url %></div>
 <%= content_tag :h1, @product.name, id: "product-name" %>
 
@@ -19,9 +28,6 @@
     <% end %>
   <% end %>
 </div>
-
-<!-- only for soapy site -->
-<p id='link-to-products'><%= link_to 'Seifen und mehr...', root_path, class: 'btn btn-primary' %></p>
 
 <% if administrator? %>
   <h3 id="admin-sections">For Admins Only</h3>

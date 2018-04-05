@@ -1,6 +1,6 @@
 <% content_for :search_metas do %>
   <!-- General meta info + SEO -->
-  <title><%= "add a product | #{Setting.first.site_name}" %></title>
+  <title><%= "add a product | #{Setting.first.try :site_name}" %></title>
   <meta name="description" content="This is where you add new products to the online store." />
 <% end %>
 <!-- original system -->

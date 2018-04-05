@@ -1,0 +1,33 @@
+<% content_for :search_metas do %>
+  <!-- General meta info + SEO -->
+  <title>list of category categories</title>
+  <meta name="description" content="Administration of store category categories" />
+<% end %>
+<!-- original system -->
+<% content_for :meta_title, 'list of category categories' %>
+
+<%= render 'tab_admin_menu' %>
+
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>name (published)</th>
+      <th><%= t('actions') %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+    <tr>
+      <td><%= "#{category.name} (#{category.products.published.count})" %></td>
+      <td>
+        <%= link_to "<span class='glyphicon glyphicon-pencil'></span> edit".html_safe, edit_category_path(category), class: 'btn btn-xs btn-default', title: t('edit') %><%= link_to "<span class='glyphicon glyphicon-trash'></span> delete".html_safe, category, method: :delete, data: { confirm: t('are_you_sure') }, class: 'btn btn-xs btn-danger', title: t('delete') %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'new category', new_category_path, class: 'btn btn-primary' %>
+
+<%= render 'shared/admin_sidebar' %>

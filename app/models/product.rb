@@ -1,5 +1,7 @@
 class Product < ActiveRecord::Base
 
+  belongs_to :category
+
   has_many :product_images, :dependent => :destroy
   has_many :illustrations, :through => :product_images
 
@@ -20,6 +22,7 @@ class Product < ActiveRecord::Base
   def to_param
     name ? "#{id}-#{name.to_url}" : id
   end
+
   scope :published, -> { where.not(published_at: nil) }
   scope :alphabetically, -> { order('name') }
   scope :by_recently_created, -> { order('created_at desc') }

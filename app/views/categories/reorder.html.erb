@@ -1,0 +1,25 @@
+<% content_for :search_metas do %>
+  <!-- General meta info + SEO -->
+  <title><%= "reorder product categories | #{Setting.first.try :site_name}" %></title>
+  <meta name="description" content="Ordering product categories manually in order to display them to the site visitors as wanted." />
+<% end %>
+<!-- original system -->
+<% content_for :meta_title, "reorder product categories | #{Setting.first.try :site_name}" %>
+
+<%= render 'tab_admin_menu' %>
+
+<p>Please use this page to reorder the product categories as you want them to show in the home page.</p>
+
+<p>To change the position of an item in this list use the little handle to drag entries up or down.</p>
+
+<ul class="draggable" data-update-url="<%= sort_categories_path %>">
+  <% for category in @categories %>
+    <%= content_tag_for :li, category do %>
+      <%= image_tag 'admin/drag-handle.gif', class: 'handle' %> <%= category.name %>
+    <% end %>
+  <% end %>
+</ul>
+
+<p><%= link_to 'see all categories', categories_path, class: 'btn btn-default' %></p>
+
+<%= render 'shared/admin_sidebar' %>

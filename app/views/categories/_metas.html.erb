@@ -1,0 +1,6 @@
+<% content_for :search_metas do %>
+  <!-- General meta info + SEO -->
+  <title><%= category.name + " | " + Setting.first.site_name || "" %></title>
+  <meta name="description" content="Product category name: <%= category.name %>" />
+  <% content_for :canonical_link, link_to('', category, rel: 'canonical') %>
+<% end %>
