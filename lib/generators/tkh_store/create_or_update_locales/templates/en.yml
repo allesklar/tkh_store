@@ -1,4 +1,5 @@
 en:
   products:
-    description: Description
-    ingredients: Ingredients
+    body:         Body
+    description:  Description
+    ingredients:  Ingredients

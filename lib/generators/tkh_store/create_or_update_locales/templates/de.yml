@@ -1,4 +1,5 @@
 de:
   products:
-    description: Beschreibung
-    ingredients: Zutaten
+    body:         Body
+    description:  Beschreibung
+    ingredients:  Zutaten

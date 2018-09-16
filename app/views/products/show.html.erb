@@ -16,6 +16,8 @@
   <%= content_tag :p, @product.ingredients %>
 <% end %>
 
+<%= raw @product.body %>
+
 <!-- developing multiple product slideshows -->
 <div id="product-photo-thumbnails">
   <% @product.illustrations.each do |pic| %>

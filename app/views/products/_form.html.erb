@@ -5,11 +5,18 @@
 								hint: 'each soap should have a nice name',
 								input_html: { size: 60 } %>
 
-	  <%= f.input :description, as: :text, input_html: { cols: 60, rows: 5 } %>
+	  <%= f.input :description,
+                hint: 'not visible on site but think of best description for Google search results',
+                as: :text,
+                input_html: { cols: 60, rows: 5 } %>
 
 		<%= f.input :ingredients,
 								hint: 'write them all, separated by commas',
 								as: :text, input_html: { cols: 60, rows: 5 } %>
+
+    <%= f.input :body,
+                hint: "don't try to stylize but do structure the document with headings, bullet lists, etc. and use the bolding with parcimony",
+                as: :text, input_html: { rows: 25, class: 'ckeditor' } %>
 
     <%= f.input :image,
                 label: 'Main Image',
