@@ -11,12 +11,12 @@
 <div id="product-banner-image"><%= image_tag @product.image.xxl.url %></div>
 <%= content_tag :h1, @product.name, id: "product-name" %>
 
+<%= raw @product.body %>
+
 <% unless @product.ingredients.blank? %>
   <h3 id="product-ingredients"><%= t 'products.ingredients' %></h3>
   <%= content_tag :p, @product.ingredients %>
 <% end %>
-
-<%= raw @product.body %>
 
 <!-- developing multiple product slideshows -->
 <div id="product-photo-thumbnails">
